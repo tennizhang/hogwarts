@@ -1,6 +1,7 @@
-# import pytest
+import pytest
 import os
 import datetime
+import yaml
 def pytest_collection_modifyitems(items):
     """
     测试用例收集完成时，将收集到的item的name和nodeid的中文显示
@@ -20,3 +21,31 @@ def pytest_configure(config):
 #     now = time.strftime("%Y-%m-%d_%H-%M-%S")
 #     log_name = '.logs/' + now + '.logs'
 #     request.config.pluginmanager.get_plugin("logging-plugin").set_log_path(return_path(log_name))
+def get_data(keys, levels, objects):
+    with open('./datas/data.yml', encoding='utf-8') as file:
+        file.seek(0)
+        datas = yaml.safe_load(file)
+        data = datas.get(keys)
+        return data.get(levels).get(objects
+
+
+
+@pytest.fixture(params=get_data('add', 'P0', 'datas'))
+def getcal_P0(request):
+    return request.param
+
+@pytest.fixture(params=get_data('add', 'P0', 'datas'))
+def getcal_P1_1(request):
+    return request.param
+
+@pytest.fixture(params=get_data('add', 'P1_2', 'datas'))
+def getcal_P1_2(request):
+    return request.param
+
+@pytest.fixture(params=get_data('add', 'P2', 'datas'))
+def getcal_P2(request):
+    return request.param
+
+@pytest.fixture(params=get_data('div', 'P0', 'datas'))
+def getcal_DIV(request):
+    return request.param
