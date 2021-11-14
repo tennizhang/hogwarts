@@ -32,7 +32,7 @@ class TestCal(object):
     def cal(self):
         return Calculator()
     def get_data(keys, levels, objects):
-        with open('./datas/data.yml', encoding='utf-8') as file:
+        with open('data.yml', encoding='utf-8') as file:
             file.seek(0)
             datas = yaml.safe_load(file)
             data = datas.get(keys)

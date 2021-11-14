@@ -4,26 +4,15 @@ import yaml
 import datetime
 
 class TestCal():
-    @pytest.fixture(scope='class',autouse=True)
+    @pytest.fixture(scope="class", autouse=True)
     def cal(self):
-        return Calculator()
+        yield Calculator()
+        print('测试结束')
 
     @pytest.fixture(autouse=True)
     def cal_start(self):
         print('开始计算')
-
-    @pytest.fixture(autouse=True)
-    def cal_stop(self):
         yield print('结束计算')
-
-    @pytest.fixture(scope='class',autouse=True)
-    def cal_end(self):
-        yield print('测试结束')
-
-    @pytest.fixture()
-    def cal_log(self):
-        with open(f'./logs/{datetime.datetime.now}.log','w+') as file:
-            file.write()
 
     def get_data(keys, levels, objects):
         with open('./datas/data.yml', encoding='utf-8') as file:
@@ -38,3 +27,9 @@ class TestCal():
 
     def test_div_P0(self, cal, getcal, cal_log):
         assert cal.div(getcal[0], getcal[1]) == getcal[2]
+
+    # 配置log文件名称
+    def pytest_configure(config):
+        time_now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+        # time_now = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
+        config.option.log_file = os.path.join(config.rootdir, 'logs', f'{time_now}.log')
