@@ -3,7 +3,6 @@ import logging
 import pytest
 from hogwarts.code1.Calculator import Calculator
 import yaml
-import datetime
 
 class TestCal():
     @pytest.fixture(scope="class", autouse=True)
@@ -21,14 +20,44 @@ class TestCal():
             file.seek(0)
             datas = yaml.safe_load(file)
             data = datas.get(keys)
-            return data.get(levels).get(objects)
+            return data.get(levels).get(objects
 
+    @pytest.mark.run(2)
+    @pytest.fixture(params=get_data('add', 'P0', 'datas'))
+    def getcal(self, request):
+        return request.param
+
+    def test_add_P0(self, cal, getcal):
+        assert cal.add(getcal[0], getcal[1]) == getcal[2]
+
+    @pytest.mark.run(0)
+    @pytest.fixture(params=get_data('add', 'P1_1', 'datas'))
+    def getcal(self, request):
+        return request.param
+
+    def test_add_P1_1(self, cal, getcal):
+        assert cal.add(getcal[0], getcal[1]) == getcal[2]
+
+    @pytest.mark.run(1)
+    @pytest.fixture(params=get_data('add', 'P1_2', 'datas'))
+    def getcal(self, request):
+        return request.param
+
+    def test_add_P1_2(self, cal, getcal):
+        assert cal.add(getcal[0], getcal[1]) == getcal[2]
+
+    @pytest.mark.run(4)
+    @pytest.fixture(params=get_data('add', 'P2', 'datas'))
+    def getcal(self, request):
+        return request.param
+
+    def test_add_P2(self, cal, getcal):
+        assert cal.add(getcal[0], getcal[1]) == getcal[2]
+
+    @pytest.mark.run(3)
     @pytest.fixture(params=get_data('div', 'P0', 'datas'))
     def getcal(self, request):
         return request.param
 
-
     def test_div_P0(self, cal, getcal):
         assert cal.div(getcal[0], getcal[1]) == getcal[2]
-        # logging.info('数据'{getcal[0], getcal[1]},'结果'getcal[2])
-
