@@ -37,10 +37,11 @@ class TestCal(object):
             datas = yaml.safe_load(file)
             data = datas.get(keys)
             return data.get(levels).get(objects)
-    @allure.title('除法P0级别测试')
+    @allure.title('除法测试')
     @pytest.mark.divfuction
     @pytest.fixture(params=get_data('div', 'P0', 'datas'))
     def getcal(self, request):
         return request.param
+    @allure.step('P0')
     def test_div_P0(self, cal, getcal):
         assert cal.div(getcal[0], getcal[1]) == getcal[2]
