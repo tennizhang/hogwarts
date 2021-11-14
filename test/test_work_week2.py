@@ -1,3 +1,5 @@
+import logging
+
 import pytest
 from hogwarts.code1.Calculator import Calculator
 import yaml
@@ -25,11 +27,8 @@ class TestCal():
     def getcal(self, request):
         return request.param
 
-    def test_div_P0(self, cal, getcal, cal_log):
-        assert cal.div(getcal[0], getcal[1]) == getcal[2]
 
-    # 配置log文件名称
-    def pytest_configure(config):
-        time_now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-        # time_now = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
-        config.option.log_file = os.path.join(config.rootdir, 'logs', f'{time_now}.log')
+    def test_div_P0(self, cal, getcal):
+        assert cal.div(getcal[0], getcal[1]) == getcal[2]
+        # logging.info('数据'{getcal[0], getcal[1]},'结果'getcal[2])
+
