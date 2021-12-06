@@ -26,7 +26,7 @@ def get_data(keys, levels, objects):
         file.seek(0)
         datas = yaml.safe_load(file)
         data = datas.get(keys)
-        return data.get(levels).get(objects
+        return data.get(levels).get(objects)
 
 
 
