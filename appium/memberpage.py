@@ -16,5 +16,6 @@ class MemberPage(BasePage):
 
     def delmemberresult(self):
         from hogwarts.appium.contactpage import ContactPage
-        delmember_result = ContactPage().numberofnames()
+        delmember_result = len(ContactPage().getnumberofname())
         return delmember_result
+

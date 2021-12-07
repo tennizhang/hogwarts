@@ -7,7 +7,7 @@ from hogwarts.appium.workstudiopage import WorkStudioPage
 
 class TestWechat:
     def test_addmember(self):
-        name, phonenumber = 'acc', '123008768111'
+        name, phonenumber = 'acc', '12300873333'
         MainPage().getintocontactpage().addmem().addmember(name, phonenumber)
         assert "添加成功" == str(AddMemberPage().addmembersucc)
 
