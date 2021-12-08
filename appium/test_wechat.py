@@ -9,7 +9,7 @@ class TestWechat:
     def test_addmember(self):
         name, phonenumber = 'acc', '12300873333'
         MainPage().getintocontactpage().addmem().addmember(name, phonenumber)
-        assert "添加成功" == str(AddMemberPage().addmembersucc)
+        AddMemberPage().addmembersucc()
 
     def test_checkin(self):
         MainPage().gotoWSpage().checkinoutside('打卡')

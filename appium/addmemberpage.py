@@ -13,5 +13,4 @@ class AddMemberPage(BasePage):
         return ContactPage()
 
     def addmembersucc(self):
-        x = self.driver.find_element(MobileBy.XPATH, "//*[@class='android.widget.Toast']").get_attribute("text")
-        return x
+        assert "添加成功" == self.driver.find_element(MobileBy.XPATH, "//*[@class='android.widget.Toast']").get_attribute("text")
