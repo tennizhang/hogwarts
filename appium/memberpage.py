@@ -9,12 +9,12 @@ from hogwarts.appium.basepage import BasePage
 class MemberPage(BasePage):
     def delmember(self, membername):
         from hogwarts.appium.contactpage import ContactPage
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='个人信息']/../../../../following-sibling::android.widget.LinearLayout").click()
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='编辑成员']").click()
-        lists = self.driver.find_element(MobileBy.XPATH, "//*[@ text = '个人信息']/../../../../../following-sibling::android.widget.ScrollView//android.widget.TextView")
+        self.xpathclick("//*[@text='个人信息']/../../../../following-sibling::android.widget.LinearLayout")
+        self.xpathclick("//*[@text='编辑成员']").click()
+        lists = self.xpath("//*[@ text = '个人信息']/../../../../../following-sibling::android.widget.ScrollView//android.widget.TextView")
         if membername == lists[0].text:
-            self.driver.find_element(MobileBy.XPATH, "//*[@text='删除成员']").click()
-            self.driver.find_element(MobileBy.XPATH, "//*[@text='确定']").click()
+            self.xpathclick("//*[@text='删除成员']")
+            self.xpathclick("//*[@text='确定']")
             return ContactPage()
         else:
             pytest.xfail(f'成员{membername}不匹配')

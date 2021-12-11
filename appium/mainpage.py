@@ -5,12 +5,10 @@ from hogwarts.appium.contactpage import ContactPage
 from hogwarts.appium.workstudiopage import WorkStudioPage
 
 class MainPage(BasePage):
-    # _base_url = f"'http://localhost:4723/wd/hub', {BasePage().capability}"
     def getintocontactpage(self):
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='通讯录']").click()
+        self.xpathclick("//*[@text='通讯录']")
         return ContactPage()
 
     def gotoWSpage(self):
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='工作台']").click()
-
+        self.xpathclick("//*[@text='工作台']")
         return WorkStudioPage()

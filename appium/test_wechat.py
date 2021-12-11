@@ -6,10 +6,21 @@ from hogwarts.appium.workstudiopage import WorkStudioPage
 
 
 class TestWechat:
+    def setup(self):
+        MainPage().start_app()
+
+    def teardown(self):
+        MainPage().app_back()
+
+    def teardown_class(self):
+        MainPage().app_stop()
+
     def test_addmember(self):
-        name, phonenumber = 'acc', '12300873333'
-        MainPage().getintocontactpage().addmem().addmember(name, phonenumber)
-        AddMemberPage().addmembersucc()
+        names = {'acc', 'acc', 'accw'}
+        phonenumbers = {'13344466603', '15544499903', '16644499933'}
+        for name, phonenumber in names, phonenumbers:
+            MainPage().getintocontactpage().addmem().addmember(name, phonenumber)
+            AddMemberPage().addmembersucc()
 
     def test_checkin(self):
         MainPage().gotoWSpage().checkinoutside('打卡')

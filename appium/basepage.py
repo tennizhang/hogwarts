@@ -4,7 +4,7 @@ from faker import Faker
 from appium.webdriver.common.mobileby import MobileBy
 
 class BasePage:
-        def __init__(self, basedriver=None):
+        def start_app(self, basedriver=None):
                 self._base_url = None
                 self.fake = Faker("zh_CN")
                 self.capability = {}
@@ -30,14 +30,23 @@ class BasePage:
                 self.driver.implicitly_wait(10)
                 self.size = self.driver.get_window_size()
 
+        def xpath(self, xpath):
+                self.driver.find_elements(MobileBy.XPATH, xpath)
+
+        def xpathclick(self, xpath):
+                self.driver.find_elements(MobileBy.XPATH, xpath).click()
+
+        def sendkey(self, xpath, keys):
+                self.driver.find_elements(MobileBy.XPATH, xpath).send_keys(keys)
+
         def back(self, num=3):
                 for i in range(num):
                         self.driver.back()
 
-        def teardown(self):
+        def app_back(self):
                 self.back()
 
-        def teardown_class(self):
+        def app_stop(self):
                 # 关闭应用
                 self.driver.quit()
 

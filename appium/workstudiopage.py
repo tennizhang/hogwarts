@@ -6,7 +6,7 @@ class WorkStudioPage(BasePage):
     def findcheckinfunction(self, text, num=5):
         for i in range(num):
             try:
-                ele = self.driver.find_element(MobileBy.XPATH, f"//*[@text='{text}']")
+                ele = self.xpath(f"//*[@text='{text}']")
                 return ele
             except:
                 # 滑动操作
@@ -31,11 +31,11 @@ class WorkStudioPage(BasePage):
 
     def checkinoutside(self, text):
         self.findcheckinfunction(text).click()
-        self.driver.find_element(MobileBy.XPATH, "//*[@text='外出打卡']").click()
-        self.driver.find_element(MobileBy.XPATH, "//*[contains(@text,'次外出')]").click()
+        self.xpathclick("//*[@text='外出打卡']")
+        self.xpathclick("//*[contains(@text,'次外出')]")
 
     def checkinoutsidesucc(self):
-        checkinout_result = self.driver.find_element(MobileBy.XPATH, "//*[@text='外出打卡成功']")
+        checkinout_result = self.xpath("//*[@text='外出打卡成功']")
         return checkinout_result
 
 
