@@ -18,5 +18,5 @@ class TestWechat:
     def test_delmember(self):
         username = 'acc'
         from hogwarts.appium.memberpage import MemberPage
-        MainPage().getintocontactpage().searchmember(username).delmember()
+        MainPage().getintocontactpage().searchmember(username).delmember(username)
         assert ContactPage().numberofnames() - 1 == MemberPage().delmemberresult()
