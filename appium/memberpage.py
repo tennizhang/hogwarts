@@ -7,7 +7,7 @@ from hogwarts.appium.basepage import BasePage
 
 class MemberPage(BasePage):
     def delmember(self):
-        self.driver.find_element(MobileBy.ID, "com.tencent.wework:id/j2z").click()
+        self.driver.find_element(MobileBy.XPATH, "//*[@text='个人信息']/../../../../following-sibling::android.widget.LinearLayout").click()
         self.driver.find_element(MobileBy.XPATH, "//*[@text='编辑成员']").click()
         self.driver.find_element(MobileBy.XPATH, "//*[@text='删除成员']").click()
         self.driver.find_element(MobileBy.XPATH, "//*[@text='确定']").click()

@@ -16,6 +16,7 @@ class TestWechat:
         assert WorkStudioPage().checkinoutsidesucc
 
     def test_delmember(self):
+        username = 'acc'
         from hogwarts.appium.memberpage import MemberPage
-        MainPage().getintocontactpage().searchmember('acc').delmember()
+        MainPage().getintocontactpage().searchmember(username).delmember()
         assert ContactPage().numberofnames() - 1 == MemberPage().delmemberresult()
