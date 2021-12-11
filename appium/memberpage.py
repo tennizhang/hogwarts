@@ -11,8 +11,8 @@ class MemberPage(BasePage):
         from hogwarts.appium.contactpage import ContactPage
         self.driver.find_element(MobileBy.XPATH, "//*[@text='个人信息']/../../../../following-sibling::android.widget.LinearLayout").click()
         self.driver.find_element(MobileBy.XPATH, "//*[@text='编辑成员']").click()
-        list = self.driver.find_element(MobileBy.XPATH, "//*[@ text = '个人信息']/../../../../../following-sibling::android.widget.ScrollView//android.widget.TextView")
-        if membername == list[0].text:
+        lists = self.driver.find_element(MobileBy.XPATH, "//*[@ text = '个人信息']/../../../../../following-sibling::android.widget.ScrollView//android.widget.TextView")
+        if membername == lists[0].text:
             self.driver.find_element(MobileBy.XPATH, "//*[@text='删除成员']").click()
             self.driver.find_element(MobileBy.XPATH, "//*[@text='确定']").click()
             return ContactPage()
