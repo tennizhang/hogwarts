@@ -9,7 +9,7 @@ class ContactPage(BasePage):
     def addmem(self):
         self.xpathclick("//*[@text='添加成员']")
         from hogwarts.appium.addmemberpage import AddMemberPage
-        return AddMemberPage()
+        return AddMemberPage(self.driver)
 
     def getnumberofname(self):
         #获取名字的列表
@@ -35,5 +35,5 @@ class ContactPage(BasePage):
         else:
             #删除找到的第一个用户
             self.getnumberofname()[0].click()
-        return MemberPage()
+        return MemberPage(self.driver)
 

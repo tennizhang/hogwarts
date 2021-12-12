@@ -1,3 +1,5 @@
+import logging
+
 from selenium.common.exceptions import NoSuchElementException
 from hogwarts.appium.basepage import BasePage
 from appium.webdriver.common.mobileby import MobileBy
@@ -32,6 +34,7 @@ class WorkStudioPage(BasePage):
     def checkinoutside(self, text):
         self.findcheckinfunction(text).click()
         self.xpathclick("//*[@text='外出打卡']")
+        logging.info(f'点击外出打卡')
         self.xpathclick("//*[contains(@text,'次外出')]")
 
     def checkinoutsidesucc(self):
