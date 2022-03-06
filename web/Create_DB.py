@@ -29,7 +29,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
 # 每个类表示一张表 项目名称、项目编号、项目的描述、项目的状态
-
 class Project(db.Model):
     id = Column(Integer, primary_key=True)
     project_name = Column(String(80), nullable=False)
@@ -59,17 +58,12 @@ class TestProject(Resource):
                             for case_data in case_datas]
         return datas
 
-
-
-
-
     post_parser = api.parser()
     post_parser.add_argument("id", type=int, required=True, location="json")
     post_parser.add_argument("project_name", type=str, required=True, location="json")
     post_parser.add_argument("project_number", type=str, required=True, location="json")
     post_parser.add_argument("project_description", type=str, location="json")
     post_parser.add_argument("project_status", type=str, location="json")
-
     @case_ns.expect(post_parser)
     def post(self):
         # 请求数据
