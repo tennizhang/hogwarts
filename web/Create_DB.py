@@ -44,17 +44,17 @@ class TestProject(Resource):
     @case_ns.expect(get_parser)
     def get(self):
         case_id = request.args.get("id")
-        if case_id
+        if case_id:
             case_data = Project.query.filter_by(id=case_id).first()
             if case_data:
-                datas = [{"id":case_data.id,"project_name"case_data.project_name,"project_number"case_data.project_number,
-                        "project_description"case_data.project_description,"project_status"case_data.project_status}]
+                datas = [{"id":case_data.id,"project_name":case_data.project_name,"project_number":case_data.project_number,
+                        "project_description":case_data.project_description,"project_status":case_data.project_status}]
             else:
                 datas = []
         else:
             case_datas = Project.query.all()
-            datas = [ {"id":case_data.id,"project_name"case_data.project_name,"project_number"case_data.project_number,
-                        "project_description"case_data.project_description,"project_status"case_data.project_status}
+            datas = [ {"id":case_data.id,"project_name":case_data.project_name,"project_number":case_data.project_number,
+                        "project_description":case_data.project_description,"project_status":case_data.project_status}
                             for case_data in case_datas]
         return datas
 
@@ -84,7 +84,7 @@ class TestProject(Resource):
     put_parser.add_argument("project_name", type=str, required=True, location="json")
     put_parser.add_argument("project_number", type=str, required=True, location="json")
     @case_ns.expect(put_parser)
-    def put(self)
+    def put(self):
         case_data = request.json
         logger.info(f"got data=====  {case_data}")
         case_id = case_data.get(id)
