@@ -76,6 +76,7 @@ class TestProject(Resource):
             testcase = Project(**case_data)
             db.session.add(testcase)
             db.session.commit()
+            db.session.close()
             return {"code": 0, "msg": "data added"}
         else:
             return {"code": 40001, "msg": "data exists"}
@@ -98,6 +99,7 @@ class TestProject(Resource):
             case_data["project_status"] = case_data.get("project_status")
             Project.query.filter_by(id=case_id).update(case_data)
             db.session.commit()
+            db.session.close()
             return {"code":0, "msg":f"{case_id} update success"}
 
     delete_parser = api.parser()
@@ -113,6 +115,7 @@ class TestProject(Resource):
         if exists:
             Project.query.filter_by(id=case_id).delete()
             db.session.commit()
+            db.session.close()
             return {"code":0, "msg":"case deleted"}
         else:
             return {"code":40002, "msg":"case not exist"}
@@ -120,7 +123,8 @@ class TestProject(Resource):
 api.add_namespace(case_ns, "/testcase")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    api.add_resource(TestProject, "/testcase")
+    app.run(debug=True, port=5000)
     # 创建表
     #db.create_all()
     # 删除表
